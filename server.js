@@ -79,6 +79,14 @@ app.post('/login', passport.authenticate('local'), function (req, res) {
   // res.redirect('/'); // preferred!
 });
 
+// log out user
+app.get('/logout', function (req, res) {
+  console.log("BEFORE logout", JSON.stringify(req.user));
+  req.logout();
+  console.log("AFTER logout", JSON.stringify(req.user));
+  res.redirect('/');
+});
+
 // API ROUTES
 
 // get all posts
