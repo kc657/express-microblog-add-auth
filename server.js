@@ -44,8 +44,9 @@ app.set('view engine', 'hbs')
 // HOMEPAGE ROUTE
 
 app.get('/', function (req, res) {
-  res.render('index')
-})
+     res.render('index', {user: JSON.stringify(req.user) + " || null"});
+});
+
 
 // show signup view
 app.get('/signup', function (req, res) {
@@ -86,6 +87,7 @@ app.get('/logout', function (req, res) {
   console.log("AFTER logout", JSON.stringify(req.user));
   res.redirect('/');
 });
+
 
 // API ROUTES
 
