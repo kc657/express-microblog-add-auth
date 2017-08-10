@@ -10,6 +10,12 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 
+// configure bodyParser (for receiving form data)
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// serve static files from public folder
+app.use(express.static(__dirname + '/public'));
+
 // middleware for auth
 app.use(cookieParser());
 app.use(session({
@@ -25,12 +31,6 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-// configure bodyParser (for receiving form data)
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// serve static files from public folder
-app.use(express.static(__dirname + '/public'));
 
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
