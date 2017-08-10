@@ -38,6 +38,7 @@ app.set('view engine', 'hbs');
 // require Post model
 var db = require('./models'),
     Post = db.Post;
+    User = db.User;
 
 
 // HOMEPAGE ROUTE
@@ -46,6 +47,10 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
+// show signup view
+app.get('/signup', function (req, res) {
+ res.sendFile('/views/signup.html', { root: __dirname });
+});
 
 // API ROUTES
 
